@@ -151,6 +151,7 @@ class PascalVOC(IMDB):
         sds_rec['width'] = size[1]
 
         # class level segmentation
+
         seg_cls_name = os.path.join(self.data_path, 'cls', index + '.mat')
         seg_cls_mat = sio.loadmat(seg_cls_name)
         seg_cls_data = seg_cls_mat['GTcls']['Segmentation'][0][0]

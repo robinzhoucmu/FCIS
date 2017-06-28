@@ -7,7 +7,8 @@ config = edict()
 config.MXNET_VERSION = ''
 config.output_path = ''
 config.symbol = ''
-config.gpus = ''
+config.gpus = '0'
+#config.gpus = 1
 config.CLASS_AGNOSTIC = True
 config.SCALES = [(600, 1000)]  # first is scale (the shorter side); second is max size
 config.MASK_SIZE = 21
@@ -34,12 +35,17 @@ config.network.NUM_ANCHORS = len(config.network.ANCHOR_SCALES) * len(config.netw
 
 # dataset related params
 config.dataset = edict()
-config.dataset.dataset = 'PascalVOC'
-config.dataset.image_set = 'SDS_train'
-config.dataset.test_image_set = 'SDS_val'
+#config.dataset.dataset = 'PascalVOC'
+#config.dataset.image_set = 'SDS_train'
+#config.dataset.test_image_set = 'SDS_val'
+
 config.dataset.root_path = './data'
-config.dataset.dataset_path = './data/VOCdevkit'
-config.dataset.NUM_CLASSES = 21
+config.dataset.dataset_path = './data/mlabdata'
+config.dataset.NUM_CLASSES = 13
+
+#config.dataset.root_path = './data'
+#config.dataset.dataset_path = './data/VOCdevkit'
+#config.dataset.NUM_CLASSES = 21
 
 # Training configurations
 config.TRAIN = edict()

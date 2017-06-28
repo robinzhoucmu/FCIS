@@ -2,7 +2,8 @@
 MXNET_VERSION: "mxnet"
 output_path: "./output/fcis/voc"
 symbol: resnet_v1_101_fcis
-gpus: '0,1,2,3'
+#gpus: '0,1,2,3'
+gpus: '0'
 CLASS_AGNOSTIC: true
 SCALES:
 - 600
@@ -50,12 +51,18 @@ network:
   - 32
   NUM_ANCHORS: 9  
 dataset:
-  NUM_CLASSES: 21
+  #NUM_CLASSES: 21
   dataset: PascalVOC
-  dataset_path: "./data/VOCdevkit"
+  #dataset_path: "./data/VOCdevkit"
   image_set: SDS_train
-  root_path: "./data"
+  #root_path: "./data"
   test_image_set: SDS_val
+  
+  NUM_CLASSES: 14
+  root_path: "./data"
+  dataset_path: './data/mlabdata'
+  
+
   proposal: rpn
 TRAIN:
   lr: 0.0005
@@ -65,7 +72,8 @@ TRAIN:
   # typically we will use 4000 warmup step for single GPU
   warmup_step: 0
   begin_epoch: 0
-  end_epoch: 22
+  #end_epoch: 22
+  end_epoch: 2
   model_prefix: 'e2e'
   # whether resume training
   RESUME: false
@@ -85,6 +93,8 @@ TRAIN:
   # rcnn rois batch size
   BATCH_ROIS: 128
   BATCH_ROIS_OHEM: 128
+  #BATCH_ROIS: 8
+  #BATCH_ROIS_OHEM: 8
   # rcnn rois sampling params
   FG_FRACTION: 0.25
   FG_THRESH: 0.5
@@ -100,6 +110,7 @@ TRAIN:
   # RPN anchor loader
   # rpn anchors batch size
   RPN_BATCH_SIZE: 256
+  #RPN_BATCH_SIZE: 16
   # rpn anchors sampling params
   RPN_FG_FRACTION: 0.5
   RPN_POSITIVE_OVERLAP: 0.7

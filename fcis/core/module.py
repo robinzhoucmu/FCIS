@@ -972,7 +972,7 @@ class MutableModule(BaseModule):
 
             # sync aux params across devices
             arg_params, aux_params = self.get_params()
-            self.set_params(arg_params, aux_params)
+            #self.set_params(arg_params, aux_params)
 
             if epoch_end_callback is not None:
                 for callback in _as_list(epoch_end_callback):
