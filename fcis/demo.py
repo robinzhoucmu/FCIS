@@ -54,12 +54,13 @@ def main():
     #            'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book',
     #            'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
     num_classes = 14
-    classes = ['screwdriver', 'wrench', 'tomato soup', 'banana', 'jello', 'smallclamp', 'locker', 'mug', 'bigclamp', 'peach', 
-               'sponge', 'lemon', 'strawberry']
+    #classes = ['screwdriver', 'wrench', 'tomato soup', 'banana', 'jello', 'smallclamp', 'locker', 'mug', 'bigclamp', 'peach', 
+    #           'sponge', 'lemon', 'strawberry']
+    classes = ['fg1', 'fg2', 'fg3', 'fg4', 'fg5', 'fg6', 'fg7', 'fg8', 'fg9', 'fg10', 'fg11', 'fg12', 'fg13']
 
     # load demo data
     #image_names = ['frame_test.jpg', 'frame0000.jpg', 'frame0199.jpg', 'frame0155.jpg', 'COCO_test2015_000000000275.jpg', 'COCO_test2015_000000001412.jpg', 'COCO_test2015_000000073428.jpg','COCO_test2015_000000393281.jpg']
-    image_names = ['frame0001.jpg', 'frame0003.jpg', 'frame0018.jpg', 'frame0019.jpg', 'frame0199.jpg']
+    image_names = ['test_img_bg.jpg']
 
     data = []
     for im_name in image_names:
@@ -127,6 +128,7 @@ def main():
             dets = [all_boxes[j] for j in range(1, num_classes)]
             masks = [all_masks[j] for j in range(1, num_classes)]
         else:
+	    print "test"
             masks = masks[0][:, 1:, :, :]
             im_height = np.round(im_shapes[0][0] / scales[0]).astype('int')
             im_width = np.round(im_shapes[0][1] / scales[0]).astype('int')
@@ -142,7 +144,7 @@ def main():
         print 'testing {} {:.4f}s'.format(im_name, toc())
         # visualize
         for i in xrange(len(dets)):
-            keep = np.where(dets[i][:,-1]>0.3)
+            keep = np.where(dets[i][:,-1]>0.1)
             dets[i] = dets[i][keep]
             masks[i] = masks[i][keep]
         im = cv2.imread(cur_path + '/../demo/' + im_name)
